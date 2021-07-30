@@ -2,28 +2,34 @@
 #include <cmath>
 #include <vector>
 #include "gradientdescent.h"
-using namespace std;
-double esp=1e-24;
-complexnumber c(1e-10,1e-10);
-Xparam x = {c};
-double lr = 0.01;
-complexnumber func(Xparam x){
-    complexnumber y = pow(x[0],2) + 4.0;
-    return y;
+
+
+
+
+
+ADV func1(adXparam x){
+    ADV y1 = x[1] + 2.0*x[2]+pow(x[0],2)-10.0;
+    return y1;
 }
-
-
+complexnumber func1_check(vector<complexnumber> x){
+    complexnumber y1 = x[1] + 2.0*x[2]+pow(x[0],2)-10.0;
+    return y1;
+}
 int main()
 {
+    functionlist funclist={&func1};
 
-    functionlist funclist = {&func};
-    GradianDecent g = {funclist,&x,esp,lr};
-    g.run(1000);
-    for(unsigned i=0;i<x.size();i++){
-        cout << "x" << i << ":" << x[i] << " ";
+    using namespace SAD;
+    using namespace std;
+
+    vector<complexnumber> x={{1,1},{1,1},{1,1}};
+
+
+    GradianDecent gd(funclist,x,0.01);
+    gd.run(100);
+    cout<<"x0:"<<x[0]<<endl;
+    cout<<"x1:"<<x[1]<<endl;
+    cout<<"x2:"<<x[2]<<endl;
+    cout<<"y:"<<func1_check(x)<<endl;
     }
-    cout << endl;
-    cout << func(x) << " ~= 0" << endl;
-
-}
 
