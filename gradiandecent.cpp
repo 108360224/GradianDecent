@@ -29,10 +29,13 @@ vector<complexnumber> GradianDecent::particularDiff(vector<complexnumber> x,func
 }
 void GradianDecent::gradiandecent()
 {
-    vector<complexnumber> dy=particularDiff(*x,funclist[0]);
-    for(unsigned i=0;i<(*x).size();i++){
-        (*x)[i]=(*x)[i]-lr*dy[i];
+    for(unsigned j=0;j<funclist.size();j++){
+        vector<complexnumber> dy=particularDiff(*x,funclist[j]);
+        for(unsigned i=0;i<(*x).size();i++){
+            (*x)[i]=(*x)[i]-lr*conj(dy[i]);
+        }
     }
+
 }
 void GradianDecent::run(int times)
 {
