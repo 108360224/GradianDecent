@@ -123,4 +123,21 @@ namespace SAD {
         y.dval = -(val*x.dval)/(x.val*x.val);
         return y;
     }
+
+
+
+
+    ADV operator * (const DABBA &d, const ADV &x)
+    {
+        ADV y;
+        if(x.val == 0.0 && x.dval == 0.0 && y.dval == 0.0){
+            y.val = x.dval;
+            y.dval = 0;
+        }
+        else{
+            y.val = x.dval;
+            y.dval = (d*y).dval;
+        }
+        return y;
+    }
 }
