@@ -5,6 +5,7 @@
 #include "variabletype.h"
 namespace SAD  // Simple Automatic Differentiation
 {
+    struct DABBA{};
     class ADV
     {
     public:
@@ -29,8 +30,10 @@ namespace SAD  // Simple Automatic Differentiation
         friend ADV operator * (const complexnumber, const ADV&);
         friend ADV operator / (const ADV&, const complexnumber);
         friend ADV operator / (const complexnumber, const ADV&);
+        friend ADV operator * (const DABBA&, const ADV&);
         complexnumber val;  // value of the variable
-        complexnumber dval;  // derivative of the variable
+        complexnumber dval;// derivative of the variable
     };
+
 
 }
